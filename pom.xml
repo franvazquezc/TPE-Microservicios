@@ -7,6 +7,15 @@
     <groupId>com.tudai.arquitecturasweb</groupId>
     <artifactId>TPE-Microservicios</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>microservicio-monopatin</module>
+        <module>microservicio-pago</module>
+        <module>microservicio-parada</module>
+        <module>microservicio-usuario</module>
+        <module>microservicio-viaje</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
