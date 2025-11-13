@@ -1,13 +1,13 @@
-package com.tudai.arquitecturasweb.microserviciopago.feignClients;
+package com.tudai.arquitecturasweb.microservicioviaje.feignClient;
 
-import com.tudai.arquitecturasweb.microserviciopago.model.Usuario;
+import com.tudai.arquitecturasweb.microservicioviaje.model.Usuario;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @FeignClient(name="microservicio-usuario", url="http://localhost:8003/usuarios")
-public interface usuarioFeignClient {
+public interface UsuarioFeignClient {
     @GetMapping
     List<Usuario> getAll();
 
