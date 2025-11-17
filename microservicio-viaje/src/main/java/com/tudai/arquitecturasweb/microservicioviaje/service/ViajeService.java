@@ -1,5 +1,6 @@
 package com.tudai.arquitecturasweb.microservicioviaje.service;
 
+import com.tudai.arquitecturasweb.microservicioviaje.dto.ViajesMonopatinDTO;
 import com.tudai.arquitecturasweb.microservicioviaje.entity.Viaje;
 import com.tudai.arquitecturasweb.microservicioviaje.repository.ViajeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +46,9 @@ public class ViajeService {
 
     public void deleteById(Long id) {
         viajeRepository.deleteById(id);
+    }
+
+    public List<ViajesMonopatinDTO> getMonopatinesConMasDeXViajesEnAnio(int cantViajes, int anio) {
+        return this.viajeRepository.getMonopatinesConMasDeXViajesEnAnio(cantViajes, anio);
     }
 }
