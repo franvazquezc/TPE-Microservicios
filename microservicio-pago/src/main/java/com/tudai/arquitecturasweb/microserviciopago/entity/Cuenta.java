@@ -19,7 +19,7 @@ public class Cuenta {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private TipoCuenta tipo; // BASICA o PREMIUM
+    private TipoCuenta tipo; // BASICA o PREMIUM o ANULADA
 
     @Column(nullable = false)
     private LocalDate fechaAlta;

@@ -38,4 +38,9 @@ public class CuentaController {
     public void deletePago(@PathVariable Long id) {
         cuentaService.delete(id);
     }
+
+    @PostMapping("/{id}/suspender")
+    public void suspenderCuenta(@PathVariable Long id){
+        this.cuentaService.suspenderCuenta(id);
+    }
 }
