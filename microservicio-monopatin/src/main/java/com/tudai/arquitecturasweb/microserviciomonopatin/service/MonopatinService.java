@@ -1,5 +1,6 @@
 package com.tudai.arquitecturasweb.microserviciomonopatin.service;
 
+import com.tudai.arquitecturasweb.microserviciomonopatin.dto.KmMonopatinDTO;
 import com.tudai.arquitecturasweb.microserviciomonopatin.entity.Monopatin;
 import com.tudai.arquitecturasweb.microserviciomonopatin.repository.MonopatinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +45,9 @@ public class MonopatinService {
 
     public void deleteById(Long id) {
         monopatinRepository.deleteById(id);
+    }
+
+    public List<KmMonopatinDTO> getReporteKmMonopatines() {
+        return monopatinRepository.getKmMonopatines();
     }
 }
