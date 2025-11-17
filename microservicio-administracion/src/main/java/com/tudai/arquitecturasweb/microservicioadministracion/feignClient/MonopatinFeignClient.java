@@ -1,6 +1,6 @@
-package com.tudai.arquitecturasweb.microservicioviaje.feignClient;
+package com.tudai.arquitecturasweb.microservicioadministracion.feignClient;
 
-import com.tudai.arquitecturasweb.microservicioviaje.model.Monopatin;
+import com.tudai.arquitecturasweb.microservicioadministracion.model.Monopatin;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 

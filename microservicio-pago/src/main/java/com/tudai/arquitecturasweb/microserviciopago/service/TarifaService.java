@@ -1,0 +1,42 @@
+package com.tudai.arquitecturasweb.microserviciopago.service;
+
+import com.tudai.arquitecturasweb.microserviciopago.entity.Tarifa;
+import com.tudai.arquitecturasweb.microserviciopago.repository.TarifaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class TarifaService {
+    @Autowired
+    TarifaRepository tarifaRepository;
+
+    public List<Tarifa> getAll() {
+        return tarifaRepository.findAll();
+    }
+
+    public Tarifa getById(Long id) {
+        return tarifaRepository.findById(id).orElse(null);
+    }
+
+    public Tarifa save(Tarifa t) {
+        return tarifaRepository.save(t);
+    }
+
+    public void delete(Long id) {
+        tarifaRepository.deleteById(id);
+    }
+
+    public void update(Long id, Tarifa nueva) {
+        Tarifa t = tarifaRepository.findById(id).orElseThrow(() -> new RuntimeException("Tarifa no encontrada"));
+
+        t.setDesde(nueva.getDesde());
+        t.setHasta(nueva.getHasta());
+        t.setTarifaKmPlana(nueva.getTarifaKmPlana());
+        t.setTarifaKmPremium(nueva.getTarifaKmPremium());
+        t.setTarifaMensualPremium(nueva.getTarifaMensualPremium());
+
+        tarifaRepository.save(t);
+    }
+}
