@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class Cuenta {
     private Long id;
-    private TipoCuenta tipo; // BASICA o PREMIUM
+    private TipoCuenta tipo; // BASICA o PREMIUM o ANULADA
     private LocalDate fechaAlta;
     private double saldo;
 
