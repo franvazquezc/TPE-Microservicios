@@ -1,5 +1,6 @@
 package com.tudai.arquitecturasweb.microserviciopago.controller;
 
+import com.tudai.arquitecturasweb.microserviciopago.dto.FacturacionDTO;
 import com.tudai.arquitecturasweb.microserviciopago.entity.Pago;
 import com.tudai.arquitecturasweb.microserviciopago.service.PagoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,12 @@ public class PagoController {
     @DeleteMapping("/{id}")
     public void deletePago(@PathVariable Long id){
         pagoService.delete(id);
+    }
+
+    @GetMapping("/reporte-facturacion")
+    public FacturacionDTO getFacturacionByFecha(@RequestParam int anio,
+                                                @RequestParam int desdeMes,
+                                                @RequestParam int hastaMes) {
+        return this.pagoService.getFacturacionByFecha(anio, desdeMes, hastaMes);
     }
 }

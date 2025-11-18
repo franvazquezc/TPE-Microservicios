@@ -1,10 +1,12 @@
 package com.tudai.arquitecturasweb.microserviciopago.service;
 
+import com.tudai.arquitecturasweb.microserviciopago.dto.FacturacionDTO;
 import com.tudai.arquitecturasweb.microserviciopago.entity.Pago;
 import com.tudai.arquitecturasweb.microserviciopago.repository.PagoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.StyledEditorKit;
 import java.util.List;
 
 @Service
@@ -36,5 +38,9 @@ public class PagoService {
         p.setFecha(nuevo.getFecha());
 
         pagoRepository.save(p);
+    }
+
+    public FacturacionDTO getFacturacionByFecha(int anio, int desdeMes, int hastaMes) {
+        return this.pagoRepository.getFacturacionByFecha(anio, desdeMes, hastaMes);
     }
 }
