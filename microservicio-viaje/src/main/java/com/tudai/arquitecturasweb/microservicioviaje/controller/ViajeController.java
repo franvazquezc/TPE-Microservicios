@@ -1,11 +1,14 @@
 package com.tudai.arquitecturasweb.microservicioviaje.controller;
 
 import com.tudai.arquitecturasweb.microservicioviaje.dto.ViajesMonopatinDTO;
+import com.tudai.arquitecturasweb.microservicioviaje.dto.ViajesUsuarioDTO;
 import com.tudai.arquitecturasweb.microservicioviaje.entity.Viaje;
+import com.tudai.arquitecturasweb.microservicioviaje.model.TipoCuenta;
 import com.tudai.arquitecturasweb.microservicioviaje.service.ViajeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -44,5 +47,12 @@ public class ViajeController {
     public List<ViajesMonopatinDTO> getMonopatinesConMasDeXViajes(@RequestParam int cantidadMinima,
                                                                   @RequestParam int anio) {
         return this.viajeService.getMonopatinesConMasDeXViajesEnAnio(cantidadMinima, anio);
+    }
+
+    @GetMapping("/reportes/viajes-de-usuarios")
+    public List<ViajesUsuarioDTO> getUsuariosMasActivos(@RequestParam TipoCuenta tipoCuenta,
+                                                        @RequestParam LocalDateTime desde,
+                                                        @RequestParam LocalDateTime hasta) {
+        return this.viajeService.getUsuariosMasActivos(tipoCuenta, desde, hasta);
     }
 }

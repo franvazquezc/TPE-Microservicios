@@ -1,6 +1,7 @@
 package com.tudai.arquitecturasweb.microservicioviaje.feignClient;
 
 import com.tudai.arquitecturasweb.microservicioviaje.model.Cuenta;
+import com.tudai.arquitecturasweb.microservicioviaje.model.TipoCuenta;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,4 +23,7 @@ public interface CuentaFeignClient {
 
     @DeleteMapping("/{id}")
     void deletePago(@PathVariable Long id);
+
+    @GetMapping("/usuarios-by-cuenta/{tipoCuenta}")
+    List<Long> getIdUsuariosByTipoCuenta(@PathVariable("tipoCuenta") TipoCuenta tipoCuenta);
 }

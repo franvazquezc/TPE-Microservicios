@@ -6,7 +6,10 @@ import com.tudai.arquitecturasweb.microserviciopago.repository.CuentaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class CuentaService {
@@ -47,5 +50,18 @@ public class CuentaService {
         c.setTipo(TipoCuenta.ANULADA);
 
         this.cuentaRepository.save(c);
+    }
+
+    public List<Long> getIdUsuariosByTipoCuenta(TipoCuenta tipoCuenta) {
+        List<List<Long>> listasDeUsuarios = this.cuentaRepository.getIdUsuariosByTipoCuenta(tipoCuenta);
+        Set<Long> usuariosUnicos = new HashSet<>();
+
+        for (List<Long> listaUsuarios : listasDeUsuarios) {
+            for (Long usuarioId : listaUsuarios) {
+                usuariosUnicos.add(usuarioId);
+            }
+        }
+
+        return new ArrayList<>(usuariosUnicos);
     }
 }

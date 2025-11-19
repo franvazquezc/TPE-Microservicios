@@ -1,6 +1,7 @@
 package com.tudai.arquitecturasweb.microserviciopago.controller;
 
 import com.tudai.arquitecturasweb.microserviciopago.entity.Cuenta;
+import com.tudai.arquitecturasweb.microserviciopago.model.TipoCuenta;
 import com.tudai.arquitecturasweb.microserviciopago.service.CuentaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -42,5 +43,10 @@ public class CuentaController {
     @PostMapping("/{id}/suspender")
     public void suspenderCuenta(@PathVariable Long id){
         this.cuentaService.suspenderCuenta(id);
+    }
+
+    @GetMapping("/usuarios-by-cuenta/{tipoCuenta}")
+    public List<Long> getIdUsuariosByTipoCuenta(@PathVariable("tipoCuenta") TipoCuenta tipoCuenta) {
+        return this.cuentaService.getIdUsuariosByTipoCuenta(tipoCuenta);
     }
 }

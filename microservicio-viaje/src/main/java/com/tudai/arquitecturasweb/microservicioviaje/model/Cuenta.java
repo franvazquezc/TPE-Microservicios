@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -20,5 +21,5 @@ public class Cuenta {
     private Double kmMensualesMaximos = 100.0;
 
     // Relación con otros microservicios
-    private Long usuarioId;
+    private List<Long> idUsuarios;
 }
