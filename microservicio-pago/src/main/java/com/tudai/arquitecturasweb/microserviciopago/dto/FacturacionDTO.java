@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 public class FacturacionDTO {
     private double monto;
     private int anio;
-    private int desde;
-    private int hasta;
+    private int desdeMes;
+    private int hastaMes;
 }

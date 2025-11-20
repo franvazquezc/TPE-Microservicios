@@ -36,6 +36,6 @@ public class ParadaController {
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
-        paradaService.deleteById(id);
+        paradaService.delete(id);
     }
 }

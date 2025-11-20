@@ -4,6 +4,7 @@ import com.tudai.arquitecturasweb.microserviciousuario.entity.Usuario;
 import com.tudai.arquitecturasweb.microserviciousuario.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class UsuarioService {
         return usuarioRepository.findById(id).orElseThrow(()->new RuntimeException("Usuario no encontrado"));
     }
 
+    @Transactional
     public void update(int id,Usuario nuevo){
         Usuario u = usuarioRepository.findById(id).orElseThrow(()-> new RuntimeException(
                 "Usuario no encontrado"

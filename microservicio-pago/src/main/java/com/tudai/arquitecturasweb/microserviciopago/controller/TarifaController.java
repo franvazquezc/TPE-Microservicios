@@ -8,33 +8,33 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/tarifa")
+@RequestMapping("/tarifas")
 public class TarifaController {
     @Autowired
     TarifaService tarifaService;
 
     @GetMapping
-    public List<Tarifa> getPagos(){
+    public List<Tarifa> getAll(){
         return tarifaService.getAll();
     }
 
     @GetMapping("/{id}")
-    public Tarifa getPagoById(@PathVariable Long id){
+    public Tarifa getById(@PathVariable Long id){
         return tarifaService.getById(id);
     }
 
     @PostMapping
-    public void createPago(@RequestBody Tarifa t){
+    public void create(@RequestBody Tarifa t){
         tarifaService.save(t);
     }
 
-    @PostMapping("/{id}")
+    @PutMapping("/{id}")
     public void update(@RequestBody Tarifa t, @PathVariable Long id){
         tarifaService.update(id, t);
     }
 
     @DeleteMapping("/{id}")
-    public void deletePago(@PathVariable Long id){
+    public void delete(@PathVariable Long id){
         tarifaService.delete(id);
     }
 }

@@ -12,7 +12,6 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class Cuenta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,9 +28,27 @@ public class Cuenta {
     private double saldo;
 
     // Atributos específicos de Premium
-    private Double kmMensualesConsumidos;
-    private Double kmMensualesMaximos = 100.0;
+    @Column(nullable = true)
+    private Double kmMensualesDisponibles;
 
     // Relación con otros microservicios
-    private List<Long> idUsuarios;
+    @ElementCollection
+    @CollectionTable(name = "cuenta_usuarios", joinColumns = @JoinColumn(name = "id_cuenta"))
+    @Column
+    private List<Integer> idUsuarios;
+
+    public Cuenta(TipoCuenta tipo, LocalDate fechaAlta, double saldo, List<Integer> idUsuarios) {
+        this.tipo = tipo;
+        this.fechaAlta = fechaAlta;
+        this.saldo = saldo;
+        this.idUsuarios = idUsuarios;
+    }
+
+    public Cuenta(TipoCuenta tipo, LocalDate fechaAlta, double saldo, Double kmMensualesDisponibles, List<Integer> idUsuarios) {
+        this.tipo = tipo;
+        this.fechaAlta = fechaAlta;
+        this.saldo = saldo;
+        this.kmMensualesDisponibles = kmMensualesDisponibles;
+        this.idUsuarios = idUsuarios;
+    }
 }

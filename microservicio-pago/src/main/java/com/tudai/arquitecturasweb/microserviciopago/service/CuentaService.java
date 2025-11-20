@@ -3,6 +3,7 @@ package com.tudai.arquitecturasweb.microserviciopago.service;
 import com.tudai.arquitecturasweb.microserviciopago.entity.Cuenta;
 import com.tudai.arquitecturasweb.microserviciopago.model.TipoCuenta;
 import com.tudai.arquitecturasweb.microserviciopago.repository.CuentaRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,17 +34,20 @@ public class CuentaService {
         this.cuentaRepository.deleteById(id);
     }
 
+    @Transactional
     public void update(Long id, Cuenta nuevo) {
         Cuenta c = this.cuentaRepository.findById(id).orElseThrow(() -> new RuntimeException("Cuenta no encontrada"));
 
-        c.setSaldo(nuevo.getSaldo());
-        c.setFechaAlta(nuevo.getFechaAlta());
         c.setTipo(nuevo.getTipo());
-        c.setKmMensualesConsumidos(nuevo.getKmMensualesConsumidos());
+        c.setFechaAlta(nuevo.getFechaAlta());
+        c.setSaldo(nuevo.getSaldo());
+        c.setKmMensualesDisponibles(nuevo.getKmMensualesDisponibles());
+        c.setIdUsuarios(nuevo.getIdUsuarios());
 
         this.cuentaRepository.save(c);
     }
 
+    @Transactional
     public void suspenderCuenta(Long id) {
         Cuenta c = this.cuentaRepository.findById(id).orElseThrow(() -> new RuntimeException("Cuenta no encontrada"));
 
@@ -52,16 +56,31 @@ public class CuentaService {
         this.cuentaRepository.save(c);
     }
 
-    public List<Long> getIdUsuariosByTipoCuenta(TipoCuenta tipoCuenta) {
-        List<List<Long>> listasDeUsuarios = this.cuentaRepository.getIdUsuariosByTipoCuenta(tipoCuenta);
-        Set<Long> usuariosUnicos = new HashSet<>();
+    @Transactional
+    public List<Integer> getIdUsuariosByTipoCuenta(TipoCuenta tipoCuenta) {
+        List<List<Integer>> listasDeUsuarios = this.cuentaRepository.getIdUsuariosByTipoCuenta(tipoCuenta);
+        Set<Integer> usuariosUnicos = new HashSet<>();
 
-        for (List<Long> listaUsuarios : listasDeUsuarios) {
-            for (Long usuarioId : listaUsuarios) {
+        for (List<Integer> listaUsuarios : listasDeUsuarios) {
+            for (Integer usuarioId : listaUsuarios) {
                 usuariosUnicos.add(usuarioId);
             }
         }
 
         return new ArrayList<>(usuariosUnicos);
+    }
+
+    @Transactional
+    public boolean cobrar(double monto, Long id) {
+        Cuenta c = this.cuentaRepository.findById(id).orElseThrow(() -> new RuntimeException("Cuenta no encontrada"));
+
+        double nuevoSaldo = c.getSaldo() - monto;
+        if (nuevoSaldo >= 0) {
+            c.setSaldo(nuevoSaldo);
+            this.cuentaRepository.save(c);
+            return true;
+        } else {
+            return false;
+        }
     }
 }

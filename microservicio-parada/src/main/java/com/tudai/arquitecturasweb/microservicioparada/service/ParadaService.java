@@ -4,6 +4,7 @@ import com.tudai.arquitecturasweb.microservicioparada.entity.Parada;
 import com.tudai.arquitecturasweb.microservicioparada.repository.ParadaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -25,6 +26,7 @@ public class ParadaService {
         return paradaRepository.save(monopatin);
     }
 
+    @Transactional
     public void update(Parada nueva, Long id) {
         Parada p = paradaRepository.findById(id).orElseThrow(()-> new RuntimeException(
                 "Parada no encontrada"
@@ -37,7 +39,7 @@ public class ParadaService {
         paradaRepository.save(p);
     }
 
-    public void deleteById(Long id) {
+    public void delete(Long id) {
         paradaRepository.deleteById(id);
     }
 }

@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 public class Parada {
     private Long id;
     private String direccion;
-    private double latitud;
-    private double longitud;
+    private Double latitud;
+    private Double longitud;
 }

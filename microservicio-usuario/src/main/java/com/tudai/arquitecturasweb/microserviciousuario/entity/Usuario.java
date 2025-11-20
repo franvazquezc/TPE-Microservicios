@@ -1,8 +1,6 @@
 package com.tudai.arquitecturasweb.microserviciousuario.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,5 +27,8 @@ public class Usuario {
     private int celular;
 
     // Relacion con otros microservicios.
+    @ElementCollection
+    @CollectionTable(name = "usuario_cuentas", joinColumns = @JoinColumn(name = "id_usuario"))
+    @Column
     private List<Long> idCuentas;
 }

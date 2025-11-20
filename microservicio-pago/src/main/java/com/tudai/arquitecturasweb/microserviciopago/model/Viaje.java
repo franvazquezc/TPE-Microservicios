@@ -1,4 +1,4 @@
-package com.tudai.arquitecturasweb.microserviciomonopatin.model;
+package com.tudai.arquitecturasweb.microserviciopago.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,9 +18,22 @@ public class Viaje {
     private double kmRecorridos;
     private boolean activo;
     // Relacion con otros microservicios
-    private Integer idUsuario;
+    private int idUsuario;
     private Long idCuenta;
     private Long idMonopatin;
     private Long idParadaInicial;
     private Long idParadaFinal;
+
+    public Long getMinTotalesDePausa() {
+        if (this.minutosPausas == null || minutosPausas.isEmpty()) {
+            return 0L;
+        }
+        long total = 0;
+        for (Long pausa : minutosPausas) {
+            if (pausa != null) {
+                total += pausa;
+            }
+        }
+        return total;
+    }
 }

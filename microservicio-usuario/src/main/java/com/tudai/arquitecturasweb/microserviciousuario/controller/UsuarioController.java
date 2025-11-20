@@ -15,26 +15,26 @@ public class UsuarioController {
 
     @GetMapping
     public List<Usuario> getAll(){
-        return usuarioService.getAll();
+        return this.usuarioService.getAll();
     }
 
     @GetMapping("/{id}")
     public Usuario getById(@PathVariable int id){
-        return usuarioService.getById(id);
+        return this.usuarioService.getById(id);
     }
 
     @PostMapping
     public void save(@RequestBody Usuario usuario){
-        usuarioService.save(usuario);
+        this.usuarioService.save(usuario);
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable int id){
-        usuarioService.delete(id);
+        this.usuarioService.delete(id);
     }
 
     @PutMapping("/{id}")
     public void update(@RequestBody Usuario nuevo, @PathVariable int id){
-        usuarioService.update(id, nuevo);
+        this.usuarioService.update(id, nuevo);
     }
 }

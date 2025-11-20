@@ -9,34 +9,34 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/pago")
+@RequestMapping("/pagos")
 public class PagoController {
 
     @Autowired
     PagoService pagoService;
 
     @GetMapping
-    public List<Pago> getPagos(){
+    public List<Pago> getAll(){
         return pagoService.getAll();
     }
 
     @GetMapping("/{id}")
-    public Pago getPagoById(@PathVariable Long id){
+    public Pago getById(@PathVariable Long id){
         return pagoService.getById(id);
     }
 
     @PostMapping
-    public void createPago(@RequestBody Pago p){
+    public void create(@RequestBody Pago p){
         pagoService.save(p);
     }
 
-    @PostMapping("/{id}")
+    @PutMapping("/{id}")
     public void update(@RequestBody Pago p, @PathVariable Long id){
         pagoService.update(id, p);
     }
 
     @DeleteMapping("/{id}")
-    public void deletePago(@PathVariable Long id){
+    public void delete(@PathVariable Long id){
         pagoService.delete(id);
     }
 

@@ -16,37 +16,37 @@ public class CuentaController {
     CuentaService cuentaService;
 
     @GetMapping
-    public List<Cuenta> getPagos(){
+    public List<Cuenta> getAll(){
         return cuentaService.getAll();
     }
 
     @GetMapping("/{id}")
-    public Cuenta getPagoById(@PathVariable Long id){
+    public Cuenta getById(@PathVariable Long id){
         return cuentaService.getById(id);
     }
 
     @PostMapping
-    public void createPago(@RequestBody Cuenta c){
+    public void create(@RequestBody Cuenta c){
             cuentaService.save(c);
     }
 
-    @PostMapping("/{id}")
+    @PutMapping("/{id}")
     public void update(@RequestBody Cuenta c, @PathVariable Long id){
         cuentaService.update(id, c);
     }
 
     @DeleteMapping("/{id}")
-    public void deletePago(@PathVariable Long id) {
+    public void delete(@PathVariable Long id) {
         cuentaService.delete(id);
     }
 
-    @PostMapping("/{id}/suspender")
+    @PutMapping("/{id}/suspender")
     public void suspenderCuenta(@PathVariable Long id){
         this.cuentaService.suspenderCuenta(id);
     }
 
     @GetMapping("/usuarios-by-cuenta/{tipoCuenta}")
-    public List<Long> getIdUsuariosByTipoCuenta(@PathVariable("tipoCuenta") TipoCuenta tipoCuenta) {
+    public List<Integer> getIdUsuariosByTipoCuenta(@PathVariable("tipoCuenta") TipoCuenta tipoCuenta) {
         return this.cuentaService.getIdUsuariosByTipoCuenta(tipoCuenta);
     }
 }

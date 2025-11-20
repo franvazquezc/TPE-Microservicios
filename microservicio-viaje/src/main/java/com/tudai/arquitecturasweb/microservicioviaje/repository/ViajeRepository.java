@@ -26,11 +26,14 @@ public interface ViajeRepository extends JpaRepository<Viaje, Long> {
             "v.idUsuario, COUNT(v)) " +
             "FROM Viaje v " +
             "WHERE v.idUsuario IN :idUsuarios " +
-            "AND v.fechaInicio BETWEEN :fechaInicio AND :fechaFin " +
+            "AND v.fechaInicio BETWEEN :desde AND :hasta " +
             "GROUP BY v.idUsuario " +
             "ORDER BY COUNT(v) DESC")
     List<ViajesUsuarioDTO> getUsuariosMasActivos(
-            @Param("usuarioIds") List<Long> idUsuarios,
-            @Param("fechaInicio") LocalDateTime fechaInicio,
-            @Param("fechaFin") LocalDateTime fechaFin);
+            @Param("idUsuarios") List<Integer> idUsuarios,
+            @Param("desde") LocalDateTime desde,
+            @Param("hasta") LocalDateTime hasta);
+
+    @Query("SELECT v.id FROM Viaje v WHERE v.activo = true")
+    List<Long> getIdViajesActivos();
 }

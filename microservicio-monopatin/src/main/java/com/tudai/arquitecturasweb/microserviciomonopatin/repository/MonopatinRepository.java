@@ -12,6 +12,7 @@ import java.util.List;
 @Repository
 public interface MonopatinRepository extends JpaRepository<Monopatin, Long> {
 
-    @Query("SELECT new com.tudai.arquitecturasweb.microserviciomonopatin.dto.KmMonopatinDTO(m.id, m.kmRecorridos) FROM Monopatin m")
+    @Query("SELECT new com.tudai.arquitecturasweb.microserviciomonopatin.dto.KmMonopatinDTO(m.id, m.kmRecorridos) " +
+            "FROM Monopatin m")
     List<KmMonopatinDTO> getKmMonopatines();
 }

@@ -1,16 +1,15 @@
 package com.tudai.arquitecturasweb.microservicioviaje.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
-@Getter
-@Setter
-@ToString
+@Data
+@NoArgsConstructor
 public class Viaje {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,25 +18,61 @@ public class Viaje {
     private LocalDateTime fechaInicio;
     @Column
     private LocalDateTime fechaFin;
-    @Column(nullable = false)
-    private double minutosDePausa;
+    @ElementCollection
+    @CollectionTable(name = "viaje_pausas", joinColumns = @JoinColumn(name = "id_viaje"))
+    @Column
+    private List<Long> minutosPausas;
     @Column(nullable = false)
     private double kmRecorridos;
-
+    @Column(nullable = false)
+    private boolean activo;
     // Relacion con otros microservicios
-    private Long idUsuario;
+    @Column(nullable = false)
+    private int idUsuario;
+    @Column(nullable = false)
     private Long idCuenta;
+    @Column(nullable = false)
     private Long idMonopatin;
+    @Column(nullable = false)
     private Long idParadaInicial;
+    @Column
     private Long idParadaFinal;
 
-    public Viaje() {
+    public Viaje(LocalDateTime fechaInicio,
+                 List<Long> minutosPausas,
+                 double kmRecorridos,
+                 int idUsuario,
+                 Long idCuenta,
+                 Long idMonopatin,
+                 Long idParadaInicial) {
+        this.fechaInicio = fechaInicio;
+        this.minutosPausas = minutosPausas;
+        this.kmRecorridos = kmRecorridos;
+        this.activo = true;
+        this.idUsuario = idUsuario;
+        this.idCuenta = idCuenta;
+        this.idMonopatin = idMonopatin;
+        this.idParadaInicial = idParadaInicial;
     }
 
-    public Viaje(LocalDateTime fechaInicio, LocalDateTime fechaFin, double minutosDePausa, double kmRecorridos) {
+    public Viaje(LocalDateTime fechaInicio,
+                 LocalDateTime fechaFin,
+                 List<Long> minutosPausas,
+                 double kmRecorridos,
+                 int idUsuario,
+                 Long idCuenta,
+                 Long idMonopatin,
+                 Long idParadaInicial,
+                 Long idParadaFinal) {
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
-        this.minutosDePausa = minutosDePausa;
+        this.minutosPausas = minutosPausas;
         this.kmRecorridos = kmRecorridos;
+        this.activo = false;
+        this.idUsuario = idUsuario;
+        this.idCuenta = idCuenta;
+        this.idMonopatin = idMonopatin;
+        this.idParadaInicial = idParadaInicial;
+        this.idParadaFinal = idParadaFinal;
     }
 }

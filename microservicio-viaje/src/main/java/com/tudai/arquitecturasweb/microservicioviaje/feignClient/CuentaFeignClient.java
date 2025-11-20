@@ -10,20 +10,20 @@ import java.util.List;
 @FeignClient(name="microservicio-pago", url="http://localhost:8003/cuentas")
 public interface CuentaFeignClient {
     @GetMapping
-    List<Cuenta> getPagos();
+    List<Cuenta> getAll();
 
     @GetMapping("/{id}")
-    Cuenta getPagoById(@PathVariable Long id);
+    Cuenta getById(@PathVariable Long id);
 
     @PostMapping
-    void createPago(@RequestBody Cuenta c);
+    void create(@RequestBody Cuenta c);
 
-    @PostMapping("/{id}")
+    @PutMapping("/{id}")
     void update(@RequestBody Cuenta c, @PathVariable Long id);
 
     @DeleteMapping("/{id}")
-    void deletePago(@PathVariable Long id);
+    void delete(@PathVariable Long id);
 
     @GetMapping("/usuarios-by-cuenta/{tipoCuenta}")
-    List<Long> getIdUsuariosByTipoCuenta(@PathVariable("tipoCuenta") TipoCuenta tipoCuenta);
+    List<Integer> getIdUsuariosByTipoCuenta(@PathVariable("tipoCuenta") TipoCuenta tipoCuenta);
 }

@@ -5,6 +5,7 @@ import com.tudai.arquitecturasweb.microserviciomonopatin.entity.Monopatin;
 import com.tudai.arquitecturasweb.microserviciomonopatin.repository.MonopatinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class MonopatinService {
         return monopatinRepository.save(monopatin);
     }
 
+    @Transactional
     public void update(Monopatin nuevo, Long id) {
         Monopatin m = monopatinRepository.findById(id).orElseThrow(()-> new RuntimeException(
                 "Monopatin no encontrado"
@@ -43,7 +45,7 @@ public class MonopatinService {
         monopatinRepository.save(m);
     }
 
-    public void deleteById(Long id) {
+    public void delete(Long id) {
         monopatinRepository.deleteById(id);
     }
 

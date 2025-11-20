@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -13,12 +13,13 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class Pago {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    private Long idViaje;
+    @Column
+    private Long idCuenta;
+    @Column
+    private LocalDateTime fecha;
     @Column(nullable = false)
-    private LocalDate fecha;
-
-    @Column(nullable = false)
-    private double monto;
+    private double montoFacturado;
+    @Column
+    private Double kmFacturados;
 }

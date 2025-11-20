@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ViajesUsuarioDTO {
-    private Long usuarioId;
+    private Integer idUsuario;
     private Long cantidadViajes;
 }

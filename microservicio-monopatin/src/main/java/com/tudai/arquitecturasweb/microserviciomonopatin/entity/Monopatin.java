@@ -4,14 +4,11 @@ package com.tudai.arquitecturasweb.microserviciomonopatin.entity;
 
 import com.tudai.arquitecturasweb.microserviciomonopatin.model.EstadoMonopatin;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Entity
-@Getter
-@Setter
-@ToString
+@Data
+@NoArgsConstructor
 public class Monopatin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,10 +34,10 @@ public class Monopatin {
     private Double longitud;
 
     // Relacion con otros microservicios
+    @Column
     private Long idViajeActual;
+    @Column
     private Long idParadaActual;
-
-    public Monopatin() {}
 
     public Monopatin(boolean activo, EstadoMonopatin estado, long minutosDeUso, double kmRecorridos, Double latitud, Double longitud) {
         this.activo = activo;
@@ -49,5 +46,25 @@ public class Monopatin {
         this.kmRecorridos = kmRecorridos;
         this.latitud = latitud;
         this.longitud = longitud;
+    }
+
+    public Monopatin(boolean activo, EstadoMonopatin estado, long minutosDeUso, double kmRecorridos, Double latitud, Double longitud, Long idViajeActual) {
+        this.activo = activo;
+        this.estado = estado;
+        this.minutosDeUso = minutosDeUso;
+        this.kmRecorridos = kmRecorridos;
+        this.latitud = latitud;
+        this.longitud = longitud;
+        this.idViajeActual = idViajeActual;
+    }
+
+    public Monopatin(boolean activo, EstadoMonopatin estado, long minutosDeUso, double kmRecorridos, Double latitud, Long idParadaActual, Double longitud) {
+        this.activo = activo;
+        this.estado = estado;
+        this.minutosDeUso = minutosDeUso;
+        this.kmRecorridos = kmRecorridos;
+        this.latitud = latitud;
+        this.longitud = longitud;
+        this.idParadaActual = idParadaActual;
     }
 }

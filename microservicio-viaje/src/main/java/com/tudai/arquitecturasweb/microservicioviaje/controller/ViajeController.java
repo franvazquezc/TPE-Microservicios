@@ -40,7 +40,7 @@ public class ViajeController {
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
-        viajeService.deleteById(id);
+        viajeService.delete(id);
     }
 
     @GetMapping("/reportes/monopatines-mas-viajes")
@@ -54,5 +54,15 @@ public class ViajeController {
                                                         @RequestParam LocalDateTime desde,
                                                         @RequestParam LocalDateTime hasta) {
         return this.viajeService.getUsuariosMasActivos(tipoCuenta, desde, hasta);
+    }
+
+    @GetMapping("/activos")
+    public List<Long> getIdViajesActivos() {
+        return this.viajeService.getIdViajesActivos();
+    }
+
+    @PutMapping("/{id}/concluir")
+    public void concluirViaje(@PathVariable Long id) {
+        this.viajeService.concluirViaje(id);
     }
 }

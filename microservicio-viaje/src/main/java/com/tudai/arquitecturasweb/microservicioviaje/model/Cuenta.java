@@ -17,9 +17,8 @@ public class Cuenta {
     private double saldo;
 
     // Atributos específicos de Premium
-    private Double kmMensualesConsumidos;
-    private Double kmMensualesMaximos = 100.0;
+    private Double kmMensualesDisponibles;
 
     // Relación con otros microservicios
-    private List<Long> idUsuarios;
+    private List<Integer> idUsuarios;
 }

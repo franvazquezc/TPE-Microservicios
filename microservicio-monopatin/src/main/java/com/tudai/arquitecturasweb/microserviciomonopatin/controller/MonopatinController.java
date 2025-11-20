@@ -37,7 +37,7 @@ public class MonopatinController {
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
-        monopatinService.deleteById(id);
+        monopatinService.delete(id);
     }
 
     @GetMapping("/reporteKm")

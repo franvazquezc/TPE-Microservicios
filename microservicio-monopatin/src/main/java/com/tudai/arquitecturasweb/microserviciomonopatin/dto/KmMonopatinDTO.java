@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class KmMonopatinDTO {
-    Long idMonpatin;
+    Long idMonopatin;
     Double kmRecorridos;
 }

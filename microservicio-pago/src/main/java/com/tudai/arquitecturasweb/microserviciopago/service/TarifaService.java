@@ -4,7 +4,9 @@ import com.tudai.arquitecturasweb.microserviciopago.entity.Tarifa;
 import com.tudai.arquitecturasweb.microserviciopago.repository.TarifaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -28,15 +30,21 @@ public class TarifaService {
         tarifaRepository.deleteById(id);
     }
 
+    @Transactional
     public void update(Long id, Tarifa nueva) {
         Tarifa t = tarifaRepository.findById(id).orElseThrow(() -> new RuntimeException("Tarifa no encontrada"));
 
         t.setDesde(nueva.getDesde());
         t.setHasta(nueva.getHasta());
-        t.setTarifaKmPlana(nueva.getTarifaKmPlana());
-        t.setTarifaKmPremium(nueva.getTarifaKmPremium());
-        t.setTarifaMensualPremium(nueva.getTarifaMensualPremium());
+        t.setTarifaXMinPlana(nueva.getTarifaXMinPlana());
+        t.setTarifaXMinPremium(nueva.getTarifaXMinPremium());
+        t.setTarifaXMesPremium(nueva.getTarifaXMesPremium());
+        t.setTarifaXMinExtra(nueva.getTarifaXMinExtra());
 
         tarifaRepository.save(t);
+    }
+
+    public Tarifa getTarifaByFecha(LocalDate fecha) {
+        return this.tarifaRepository.getTarifaByFecha(fecha);
     }
 }

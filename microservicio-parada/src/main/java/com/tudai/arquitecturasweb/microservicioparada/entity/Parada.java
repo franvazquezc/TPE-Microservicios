@@ -1,14 +1,12 @@
 package com.tudai.arquitecturasweb.microservicioparada.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Getter
-@Setter
-@ToString
+@Data
+@NoArgsConstructor
 public class Parada {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,8 +17,6 @@ public class Parada {
     private Double latitud;
     @Column(nullable = false)
     private Double longitud;
-
-    public Parada() {}
 
     public Parada(String direccion, Double latitud, Double longitud) {
         this.direccion = direccion;

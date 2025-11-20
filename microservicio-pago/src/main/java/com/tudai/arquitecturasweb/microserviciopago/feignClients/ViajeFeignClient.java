@@ -1,6 +1,6 @@
-package com.tudai.arquitecturasweb.microserviciomonopatin.feignClients;
+package com.tudai.arquitecturasweb.microserviciopago.feignClients;
 
-import com.tudai.arquitecturasweb.microserviciomonopatin.model.Viaje;
+import com.tudai.arquitecturasweb.microserviciopago.model.Viaje;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,4 +26,7 @@ public interface ViajeFeignClient {
 
     @GetMapping("/activos")
     List<Long> getIdViajesActivos();
+
+    @PutMapping("/{id}/concluir")
+    void concluirViaje(@PathVariable Long id);
 }
