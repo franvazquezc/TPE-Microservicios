@@ -40,8 +40,15 @@ public class MonopatinController {
         monopatinService.delete(id);
     }
 
-    @GetMapping("/reporteKm")
+    @GetMapping("/reporte-km")
     public List<KmMonopatinDTO> getReporteKmMonopatines() {
         return monopatinService.getReporteKmMonopatines();
+    }
+
+    @GetMapping("/cercanos")
+    public List<Monopatin> getMonopatinesCercanos(@RequestParam double latitud,
+                                                  @RequestParam double longitud,
+                                                  @RequestParam(defaultValue = "0.5") double radio) {
+        return monopatinService.getMonopatinesCercanos(latitud, longitud, radio);
     }
 }

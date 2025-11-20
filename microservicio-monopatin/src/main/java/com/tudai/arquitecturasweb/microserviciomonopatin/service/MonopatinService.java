@@ -2,6 +2,8 @@ package com.tudai.arquitecturasweb.microserviciomonopatin.service;
 
 import com.tudai.arquitecturasweb.microserviciomonopatin.dto.KmMonopatinDTO;
 import com.tudai.arquitecturasweb.microserviciomonopatin.entity.Monopatin;
+import com.tudai.arquitecturasweb.microserviciomonopatin.feignClients.ParadaFeignClient;
+import com.tudai.arquitecturasweb.microserviciomonopatin.model.EstadoMonopatin;
 import com.tudai.arquitecturasweb.microserviciomonopatin.repository.MonopatinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,9 @@ public class MonopatinService {
 
     @Autowired
     private MonopatinRepository monopatinRepository;
+
+    @Autowired
+    private ParadaFeignClient paradaFeignClient;
 
     public List<Monopatin> getAll() {
         return monopatinRepository.findAll();
@@ -51,5 +56,10 @@ public class MonopatinService {
 
     public List<KmMonopatinDTO> getReporteKmMonopatines() {
         return monopatinRepository.getKmMonopatines();
+    }
+
+    public List<Monopatin> getMonopatinesCercanos(double latitud, double longitud, double radio) {
+        List<Long> idParadas = paradaFeignClient.getParadasCercanas(latitud, longitud, radio);
+        return monopatinRepository.findByIdParadaActualInAndActivoTrueAndEstado(idParadas, EstadoMonopatin.ESTACIONADO);
     }
 }

@@ -3,6 +3,7 @@ package com.tudai.arquitecturasweb.microserviciomonopatin.repository;
 import com.tudai.arquitecturasweb.microserviciomonopatin.dto.KmMonopatinDTO;
 import com.tudai.arquitecturasweb.microserviciomonopatin.entity.Monopatin;
 
+import com.tudai.arquitecturasweb.microserviciomonopatin.model.EstadoMonopatin;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -15,4 +16,6 @@ public interface MonopatinRepository extends JpaRepository<Monopatin, Long> {
     @Query("SELECT new com.tudai.arquitecturasweb.microserviciomonopatin.dto.KmMonopatinDTO(m.id, m.kmRecorridos) " +
             "FROM Monopatin m")
     List<KmMonopatinDTO> getKmMonopatines();
+
+    List<Monopatin> findByIdParadaActualInAndActivoTrueAndEstado(List<Long> idParadas, EstadoMonopatin estado);
 }

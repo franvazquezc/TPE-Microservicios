@@ -16,26 +16,33 @@ public class ParadaController {
 
     @GetMapping
     public List<Parada> getAll() {
-        return paradaService.getAll();
+        return this.paradaService.getAll();
     }
 
     @GetMapping("/{id}")
     public Parada getById(@PathVariable("id") Long id) {
-        return paradaService.getById(id);
+        return this.paradaService.getById(id);
     }
 
     @PostMapping
     public void create(@RequestBody Parada p) {
-        paradaService.save(p);
+        this.paradaService.save(p);
     }
 
     @PutMapping("/{id}")
     public void update(@PathVariable Long id, @RequestBody Parada p) {
-        paradaService.update(p, id);
+        this.paradaService.update(p, id);
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
-        paradaService.delete(id);
+        this.paradaService.delete(id);
+    }
+
+    @GetMapping("/cercanas")
+    public List<Long> getParadasCercanas(@RequestParam double latitud,
+                                         @RequestParam double longitud,
+                                         @RequestParam(defaultValue = "0.5") double radioKm) {
+        return this.paradaService.getParadasCercanas(latitud, longitud, radioKm);
     }
 }

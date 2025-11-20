@@ -23,4 +23,9 @@ public interface ParadaFeignClient {
 
     @DeleteMapping("/{id}")
     void delete(@PathVariable Long id);
+
+    @GetMapping("/cercanas")
+    List<Long> getParadasCercanas(@RequestParam double latitud,
+                                  @RequestParam double longitud,
+                                  @RequestParam(defaultValue = "0.5") double radioKm);
 }
