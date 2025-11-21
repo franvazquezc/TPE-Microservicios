@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class FacturacionDTO {
-    private double monto;
-    private int anio;
-    private int desdeMes;
-    private int hastaMes;
+    private Double monto;
+    private Integer anio;
+    private Integer desdeMes;
+    private Integer hastaMes;
 }

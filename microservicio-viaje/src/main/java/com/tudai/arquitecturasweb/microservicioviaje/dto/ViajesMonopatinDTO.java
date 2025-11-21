@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class ViajesMonopatinDTO {
     private Long idMonopatin;
     private Long cantidadDeViajes;
-    private int anio;
+    private Integer anio;
 }
