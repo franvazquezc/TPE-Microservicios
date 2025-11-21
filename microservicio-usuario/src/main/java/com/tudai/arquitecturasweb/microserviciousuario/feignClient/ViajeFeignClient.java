@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDateTime;
 
-@FeignClient(name="microservicio-viaje", url="http://localhost:8003/viajes")
+@FeignClient(name="microservicio-viaje", url="http://localhost:8005/viajes")
 public interface ViajeFeignClient {
     @GetMapping("/cantidad-por-usuario/{idUsuario}")
     int getCantidadViajesUsuario(@PathVariable("idUsuario") int idUsuario,
