@@ -83,4 +83,10 @@ public class CuentaService {
             return false;
         }
     }
+
+    public List<Integer> getUsuariosByCuenta(Long idCuenta) {
+        Cuenta cuenta = cuentaRepository.findById(idCuenta)
+                .orElseThrow(() -> new RuntimeException("Cuenta no encontrada"));
+        return cuenta.getIdUsuarios();
+    }
 }

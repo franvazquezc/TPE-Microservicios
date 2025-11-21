@@ -65,4 +65,11 @@ public class ViajeController {
     public void concluirViaje(@PathVariable Long id) {
         this.viajeService.concluirViaje(id);
     }
+
+    @GetMapping("/cantidad-por-usuario/{idUsuario}")
+    public int getCantidadViajesUsuario(@PathVariable int idUsuario,
+                                        @RequestParam LocalDateTime desde,
+                                        @RequestParam LocalDateTime hasta) {
+        return this.viajeService.getCantidadViajesUsuario(idUsuario, desde, hasta);
+    }
 }

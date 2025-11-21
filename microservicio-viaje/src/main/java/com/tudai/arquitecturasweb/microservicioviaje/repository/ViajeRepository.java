@@ -36,4 +36,11 @@ public interface ViajeRepository extends JpaRepository<Viaje, Long> {
 
     @Query("SELECT v.id FROM Viaje v WHERE v.activo = true")
     List<Long> getIdViajesActivos();
+
+    @Query("SELECT COUNT(v) FROM Viaje v " +
+            "WHERE v.idUsuario = :idUsuario " +
+            "AND v.fechaInicio BETWEEN :desde AND :hasta")
+    int getCantidadViajesUsuario(@Param("idUsuario") int idUsuario,
+                                 @Param("desde") LocalDateTime desde,
+                                 @Param("hasta") LocalDateTime hasta);
 }

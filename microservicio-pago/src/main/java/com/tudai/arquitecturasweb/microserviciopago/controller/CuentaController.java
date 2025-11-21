@@ -49,4 +49,9 @@ public class CuentaController {
     public List<Integer> getIdUsuariosByTipoCuenta(@PathVariable("tipoCuenta") TipoCuenta tipoCuenta) {
         return this.cuentaService.getIdUsuariosByTipoCuenta(tipoCuenta);
     }
+
+    @GetMapping("/{id}/usuarios")
+    public List<Integer> getUsuariosByCuenta(@PathVariable("id") Long idCuenta) {
+        return this.cuentaService.getUsuariosByCuenta(idCuenta);
+    }
 }

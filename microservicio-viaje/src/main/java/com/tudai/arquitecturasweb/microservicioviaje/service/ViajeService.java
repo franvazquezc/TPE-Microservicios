@@ -84,4 +84,8 @@ public class ViajeService {
 
         this.viajeRepository.save(v);
     }
+
+    public int getCantidadViajesUsuario(int idUsuario, LocalDateTime desde, LocalDateTime hasta) {
+        return this.viajeRepository.getCantidadViajesUsuario(idUsuario, desde, hasta);
+    }
 }

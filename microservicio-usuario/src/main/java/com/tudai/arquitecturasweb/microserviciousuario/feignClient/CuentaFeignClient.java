@@ -22,4 +22,7 @@ public interface CuentaFeignClient {
 
     @DeleteMapping("/{id}")
     void delete(@PathVariable Long id);
+
+    @GetMapping("/{idCuenta}/usuarios")
+    List<Integer> getUsuariosByCuenta(@PathVariable("idCuenta") Long idCuenta);
 }
