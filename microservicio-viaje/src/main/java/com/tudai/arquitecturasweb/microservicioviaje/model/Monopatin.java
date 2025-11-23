@@ -11,7 +11,7 @@ public class Monopatin {
     private Long id;
     // Estado
     private boolean activo;
-    private EstadoMonopatin estado; // ESTACIONADO, EN_USO, PAUSA, MANTENIMIENTO
+    private EstadoMonopatin estado;
 
     // Estadisticas de uso
     private long minutosDeUso;

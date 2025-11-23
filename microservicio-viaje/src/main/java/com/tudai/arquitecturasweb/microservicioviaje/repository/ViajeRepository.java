@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.List;
 
 @Repository
@@ -31,8 +31,8 @@ public interface ViajeRepository extends JpaRepository<Viaje, Long> {
             "ORDER BY COUNT(v) DESC")
     List<ViajesUsuarioDTO> getUsuariosMasActivos(
             @Param("idUsuarios") List<Integer> idUsuarios,
-            @Param("desde") LocalDateTime desde,
-            @Param("hasta") LocalDateTime hasta);
+            @Param("desde") Instant desde,
+            @Param("hasta") Instant hasta);
 
     @Query("SELECT v.id FROM Viaje v WHERE v.activo = true")
     List<Long> getIdViajesActivos();
@@ -41,6 +41,6 @@ public interface ViajeRepository extends JpaRepository<Viaje, Long> {
             "WHERE v.idUsuario = :idUsuario " +
             "AND v.fechaInicio BETWEEN :desde AND :hasta")
     int getCantidadViajesUsuario(@Param("idUsuario") int idUsuario,
-                                 @Param("desde") LocalDateTime desde,
-                                 @Param("hasta") LocalDateTime hasta);
+                                 @Param("desde") Instant desde,
+                                 @Param("hasta") Instant hasta);
 }

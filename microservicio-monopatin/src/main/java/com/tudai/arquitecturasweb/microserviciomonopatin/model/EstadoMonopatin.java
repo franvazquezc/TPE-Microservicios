@@ -4,5 +4,6 @@ public enum EstadoMonopatin {
     ESTACIONADO,
     EN_USO,
     PAUSA,
-    MANTENIMIENTO
+    MANTENIMIENTO,
+    CANCELADO
 }

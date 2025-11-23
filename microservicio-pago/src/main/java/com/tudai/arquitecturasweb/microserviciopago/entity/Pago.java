@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @Entity
 @Data
@@ -17,7 +17,7 @@ public class Pago {
     @Column
     private Long idCuenta;
     @Column
-    private LocalDateTime fecha;
+    private Instant fecha;
     @Column(nullable = false)
     private double montoFacturado;
     @Column

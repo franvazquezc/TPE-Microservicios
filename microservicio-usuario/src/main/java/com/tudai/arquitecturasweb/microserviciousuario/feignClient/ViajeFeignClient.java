@@ -5,12 +5,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
-@FeignClient(name="microservicio-viaje", url="http://localhost:8005/viajes")
+@FeignClient(name="microservicio-viaje", url="http://microservicio-viaje:8005/viajes")
 public interface ViajeFeignClient {
     @GetMapping("/cantidad-por-usuario/{idUsuario}")
     int getCantidadViajesUsuario(@PathVariable("idUsuario") int idUsuario,
-                                 @RequestParam("desde") LocalDateTime desde,
-                                 @RequestParam("hasta") LocalDateTime hasta);
+                                 @RequestParam("desde") Instant desde,
+                                 @RequestParam("hasta") Instant hasta);
 }

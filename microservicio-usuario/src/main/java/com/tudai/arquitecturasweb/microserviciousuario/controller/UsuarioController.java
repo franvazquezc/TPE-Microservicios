@@ -6,7 +6,7 @@ import com.tudai.arquitecturasweb.microserviciousuario.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.List;
 
 @RestController
@@ -41,16 +41,16 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}/viajes")
-    public ViajesUsuarioDTO getUsoUsuario(@PathVariable int idUsuario,
-                                          @RequestParam LocalDateTime desde,
-                                          @RequestParam LocalDateTime hasta) {
-        return this.usuarioService.getViajesUsuario(idUsuario, desde, hasta);
+    public ViajesUsuarioDTO getUsoUsuario(@PathVariable int id,
+                                          @RequestParam Instant desde,
+                                          @RequestParam Instant hasta) {
+        return this.usuarioService.getViajesUsuario(id, desde, hasta);
     }
 
-    @GetMapping("/cuenta/{id}/viajes")
+    @GetMapping("/cuenta/{idCuenta}/viajes")
     public List<ViajesUsuarioDTO> getUsoUsuariosDeCuenta(@PathVariable Long idCuenta,
-                                                        @RequestParam LocalDateTime desde,
-                                                        @RequestParam LocalDateTime hasta) {
+                                                        @RequestParam Instant desde,
+                                                        @RequestParam Instant hasta) {
         return this.usuarioService.getViajesUsuariosDeCuenta(idCuenta, desde, hasta);
     }
 }

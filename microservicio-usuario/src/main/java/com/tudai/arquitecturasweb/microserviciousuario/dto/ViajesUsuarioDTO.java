@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ViajesUsuarioDTO {
-    private int idUsuario;
-    private int cantidad;
+    private Integer idUsuario;
+    private Integer cantidad;
 }

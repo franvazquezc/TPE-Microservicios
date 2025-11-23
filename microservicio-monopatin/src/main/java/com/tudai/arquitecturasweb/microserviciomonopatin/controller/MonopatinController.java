@@ -17,38 +17,43 @@ public class MonopatinController {
 
     @GetMapping
     public List<Monopatin> getAll() {
-        return monopatinService.getAll();
+        return this.monopatinService.getAll();
     }
 
     @GetMapping("/{id}")
     public Monopatin getById(@PathVariable("id") Long id) {
-        return monopatinService.getById(id);
+        return this.monopatinService.getById(id);
     }
 
     @PostMapping
     public void create(@RequestBody Monopatin m) {
-        monopatinService.save(m);
+        this.monopatinService.save(m);
     }
 
     @PutMapping("/{id}")
     public void update(@PathVariable Long id, @RequestBody Monopatin m) {
-        monopatinService.update(m, id);
+        this.monopatinService.update(m, id);
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
-        monopatinService.delete(id);
+        this.monopatinService.delete(id);
     }
 
     @GetMapping("/reporte-km")
     public List<KmMonopatinDTO> getReporteKmMonopatines() {
-        return monopatinService.getReporteKmMonopatines();
+        return this.monopatinService.getReporteKmMonopatines();
     }
 
     @GetMapping("/cercanos")
     public List<Monopatin> getMonopatinesCercanos(@RequestParam double latitud,
                                                   @RequestParam double longitud,
                                                   @RequestParam(defaultValue = "0.5") double radio) {
-        return monopatinService.getMonopatinesCercanos(latitud, longitud, radio);
+        return this.monopatinService.getMonopatinesCercanos(latitud, longitud, radio);
+    }
+
+    @PutMapping("/{id}/cancelar")
+    public void setEstadoCancelado(@PathVariable Long id){
+        this.monopatinService.setEstadoCancelado(id);
     }
 }

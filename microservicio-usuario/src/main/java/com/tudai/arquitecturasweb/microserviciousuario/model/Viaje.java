@@ -1,10 +1,10 @@
-package com.tudai.arquitecturasweb.microserviciousuario.entity;
+package com.tudai.arquitecturasweb.microserviciousuario.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.List;
 
 @Data
@@ -12,8 +12,8 @@ import java.util.List;
 @AllArgsConstructor
 public class Viaje {
     private Long id;
-    private LocalDateTime fechaInicio;
-    private LocalDateTime fechaFin;
+    private Instant fechaInicio;
+    private Instant fechaFin;
     private List<Long> minutosPausas;
     private double kmRecorridos;
     private boolean activo;

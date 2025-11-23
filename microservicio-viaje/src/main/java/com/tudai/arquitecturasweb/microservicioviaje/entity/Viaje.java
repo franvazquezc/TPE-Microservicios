@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.List;
 
 @Entity
@@ -15,9 +15,9 @@ public class Viaje {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
-    private LocalDateTime fechaInicio;
+    private Instant fechaInicio;
     @Column
-    private LocalDateTime fechaFin;
+    private Instant fechaFin;
     @ElementCollection
     @CollectionTable(name = "viaje_pausas", joinColumns = @JoinColumn(name = "id_viaje"))
     @Column
@@ -38,7 +38,7 @@ public class Viaje {
     @Column
     private Long idParadaFinal;
 
-    public Viaje(LocalDateTime fechaInicio,
+    public Viaje(Instant fechaInicio,
                  List<Long> minutosPausas,
                  double kmRecorridos,
                  int idUsuario,
@@ -55,8 +55,8 @@ public class Viaje {
         this.idParadaInicial = idParadaInicial;
     }
 
-    public Viaje(LocalDateTime fechaInicio,
-                 LocalDateTime fechaFin,
+    public Viaje(Instant fechaInicio,
+                 Instant fechaFin,
                  List<Long> minutosPausas,
                  double kmRecorridos,
                  int idUsuario,

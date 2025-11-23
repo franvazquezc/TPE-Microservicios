@@ -8,7 +8,7 @@ import com.tudai.arquitecturasweb.microservicioviaje.service.ViajeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.List;
 
 @RestController
@@ -51,8 +51,8 @@ public class ViajeController {
 
     @GetMapping("/reportes/viajes-de-usuarios")
     public List<ViajesUsuarioDTO> getUsuariosMasActivos(@RequestParam TipoCuenta tipoCuenta,
-                                                        @RequestParam LocalDateTime desde,
-                                                        @RequestParam LocalDateTime hasta) {
+                                                        @RequestParam Instant desde,
+                                                        @RequestParam Instant hasta) {
         return this.viajeService.getUsuariosMasActivos(tipoCuenta, desde, hasta);
     }
 
@@ -68,8 +68,8 @@ public class ViajeController {
 
     @GetMapping("/cantidad-por-usuario/{idUsuario}")
     public int getCantidadViajesUsuario(@PathVariable int idUsuario,
-                                        @RequestParam LocalDateTime desde,
-                                        @RequestParam LocalDateTime hasta) {
+                                        @RequestParam Instant desde,
+                                        @RequestParam Instant hasta) {
         return this.viajeService.getCantidadViajesUsuario(idUsuario, desde, hasta);
     }
 }

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name="microservicio-monopatin", url="http://localhost:8001/monopatines")
+@FeignClient(name="microservicio-monopatin", url="http://microservicio-monopatin:8001/monopatines")
 public interface MonopatinFeignClient {
 
     @GetMapping
@@ -23,4 +23,7 @@ public interface MonopatinFeignClient {
 
     @DeleteMapping("/{id}")
     void delete(@PathVariable Long id);
+
+    @PutMapping("/{id}/cancelar")
+    void setEstadoCancelado(@PathVariable Long id);
 }

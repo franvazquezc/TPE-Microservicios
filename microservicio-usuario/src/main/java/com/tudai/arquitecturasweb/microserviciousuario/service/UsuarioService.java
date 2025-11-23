@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,16 +25,16 @@ public class UsuarioService {
     private CuentaFeignClient cuentaFeignClient;
 
     public List<Usuario> getAll(){
-        return usuarioRepository.findAll();
+        return this.usuarioRepository.findAll();
     }
 
     public Usuario getById(int id){
-        return usuarioRepository.findById(id).orElseThrow(()->new RuntimeException("Usuario no encontrado"));
+        return this.usuarioRepository.findById(id).orElseThrow(()->new RuntimeException("Usuario no encontrado"));
     }
 
     @Transactional
-    public void update(int id,Usuario nuevo){
-        Usuario u = usuarioRepository.findById(id).orElseThrow(()-> new RuntimeException(
+    public void update(int id, Usuario nuevo){
+        Usuario u = this.usuarioRepository.findById(id).orElseThrow(()-> new RuntimeException(
                 "Usuario no encontrado"
         ));
 
@@ -43,28 +44,28 @@ public class UsuarioService {
         u.setAlias(nuevo.getAlias());
         u.setCelular(nuevo.getCelular());
 
-        usuarioRepository.save(u);
+        this.usuarioRepository.save(u);
     }
 
     public void save(Usuario usuario){
-        usuarioRepository.save(usuario);
+        this.usuarioRepository.save(usuario);
     }
 
     public void delete(int id){
-        usuarioRepository.deleteById(id);
+        this.usuarioRepository.deleteById(id);
     }
 
-    public ViajesUsuarioDTO getViajesUsuario(int idUsuario, LocalDateTime desde, LocalDateTime hasta) {
-        int cantidad = viajeFeignClient.getCantidadViajesUsuario(idUsuario, desde, hasta);
-        return new ViajesUsuarioDTO(idUsuario, cantidad);
+    public ViajesUsuarioDTO getViajesUsuario(int id, Instant desde, Instant hasta) {
+        int cantidad = this.viajeFeignClient.getCantidadViajesUsuario(id, desde, hasta);
+        return new ViajesUsuarioDTO(id, cantidad);
     }
 
-    public List<ViajesUsuarioDTO> getViajesUsuariosDeCuenta(Long idCuenta, LocalDateTime desde, LocalDateTime hasta) {
-        List<Integer> idUsuarios = cuentaFeignClient.getUsuariosByCuenta(idCuenta);
+    public List<ViajesUsuarioDTO> getViajesUsuariosDeCuenta(Long idCuenta, Instant desde, Instant hasta) {
+        List<Integer> idUsuarios = this.cuentaFeignClient.getUsuariosByCuenta(idCuenta);
         List<ViajesUsuarioDTO> resultado = new ArrayList<>();
 
         for (Integer idUsuario : idUsuarios) {
-            int cantidad = viajeFeignClient.getCantidadViajesUsuario(idUsuario, desde, hasta);
+            int cantidad = this.viajeFeignClient.getCantidadViajesUsuario(idUsuario, desde, hasta);
             ViajesUsuarioDTO vu = new ViajesUsuarioDTO(idUsuario, cantidad);
             resultado.add(vu);
         }

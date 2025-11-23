@@ -21,20 +21,20 @@ public class MonopatinService {
     private ParadaFeignClient paradaFeignClient;
 
     public List<Monopatin> getAll() {
-        return monopatinRepository.findAll();
+        return this.monopatinRepository.findAll();
     }
 
     public Monopatin getById(Long id) {
-        return monopatinRepository.findById(id).orElse(null);
+        return this.monopatinRepository.findById(id).orElse(null);
     }
 
     public Monopatin save(Monopatin monopatin) {
-        return monopatinRepository.save(monopatin);
+        return this.monopatinRepository.save(monopatin);
     }
 
     @Transactional
     public void update(Monopatin nuevo, Long id) {
-        Monopatin m = monopatinRepository.findById(id).orElseThrow(()-> new RuntimeException(
+        Monopatin m = this.monopatinRepository.findById(id).orElseThrow(()-> new RuntimeException(
                 "Monopatin no encontrado"
         ));
 
@@ -47,19 +47,28 @@ public class MonopatinService {
         m.setIdParadaActual(nuevo.getIdParadaActual());
         m.setIdViajeActual(nuevo.getIdViajeActual());
 
-        monopatinRepository.save(m);
+        this.monopatinRepository.save(m);
     }
 
     public void delete(Long id) {
-        monopatinRepository.deleteById(id);
+        this.monopatinRepository.deleteById(id);
     }
 
     public List<KmMonopatinDTO> getReporteKmMonopatines() {
-        return monopatinRepository.getKmMonopatines();
+        return this.monopatinRepository.getKmMonopatines();
     }
 
     public List<Monopatin> getMonopatinesCercanos(double latitud, double longitud, double radio) {
         List<Long> idParadas = paradaFeignClient.getParadasCercanas(latitud, longitud, radio);
-        return monopatinRepository.findByIdParadaActualInAndActivoTrueAndEstado(idParadas, EstadoMonopatin.ESTACIONADO);
+        return this.monopatinRepository.findByIdParadaActualInAndActivoTrueAndEstado(idParadas, EstadoMonopatin.ESTACIONADO);
+    }
+
+    @Transactional
+    public void setEstadoCancelado(Long id) {
+        Monopatin m = this.getById(id);
+
+        m.setEstado(EstadoMonopatin.CANCELADO);
+
+        this.save(m);
     }
 }

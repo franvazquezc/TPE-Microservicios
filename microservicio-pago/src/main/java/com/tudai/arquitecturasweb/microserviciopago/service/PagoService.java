@@ -13,9 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.*;
 import java.util.List;
 
 @Service
@@ -79,7 +77,7 @@ public class PagoService {
 
         // Si no existe crea un pago.
         if(p == null) {
-            p = new Pago(v.getId(), v.getIdCuenta(), LocalDateTime.now(), 0.0, 0.0);
+            p = new Pago(v.getId(), v.getIdCuenta(), null, 0.0, 0.0);
             this.save(p);
         }
 
@@ -112,7 +110,7 @@ public class PagoService {
         if(cobroExitoso) {
             p.setMontoFacturado(p.getMontoFacturado() + montoPagoActual);
             p.setKmFacturados(p.getKmFacturados() + this.getKmNoFacturados(p));
-            p.setFecha(LocalDateTime.now());
+            p.setFecha(Instant.now());
 
             this.save(p);
         } else {
@@ -125,8 +123,10 @@ public class PagoService {
     }
 
     public long getMinDesdeUltimaFacturacion(Pago p) {
-        LocalDateTime referencia = (p.getFecha() != null) ? p.getFecha() : this.viajeFeignClient.getById(p.getIdViaje()).getFechaInicio();
-        return Duration.between(referencia, LocalDateTime.now()).toMinutes();
+        Instant referencia = (p.getFecha() != null) ? p.getFecha() : this.viajeFeignClient.getById(p.getIdViaje()).getFechaInicio();
+        long minutos = Duration.between(referencia, Instant.now()).toMinutes();
+
+        return minutos;
     }
 
     public Double getKmNoFacturados(Pago p) {

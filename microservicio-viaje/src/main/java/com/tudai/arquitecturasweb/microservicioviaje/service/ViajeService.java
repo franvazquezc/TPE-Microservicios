@@ -4,13 +4,14 @@ import com.tudai.arquitecturasweb.microservicioviaje.dto.ViajesMonopatinDTO;
 import com.tudai.arquitecturasweb.microservicioviaje.dto.ViajesUsuarioDTO;
 import com.tudai.arquitecturasweb.microservicioviaje.entity.Viaje;
 import com.tudai.arquitecturasweb.microservicioviaje.feignClient.CuentaFeignClient;
+import com.tudai.arquitecturasweb.microservicioviaje.feignClient.MonopatinFeignClient;
 import com.tudai.arquitecturasweb.microservicioviaje.model.TipoCuenta;
 import com.tudai.arquitecturasweb.microservicioviaje.repository.ViajeRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.List;
 
 @Service
@@ -21,6 +22,9 @@ public class ViajeService {
 
     @Autowired
     private CuentaFeignClient cuentaFeignClient;
+
+    @Autowired
+    private MonopatinFeignClient monopatinFeignClient;
 
     public List<Viaje> getAll() {
         return viajeRepository.findAll();
@@ -66,7 +70,7 @@ public class ViajeService {
         return this.cuentaFeignClient.getIdUsuariosByTipoCuenta(tipoCuenta);
     }
 
-    public List<ViajesUsuarioDTO> getUsuariosMasActivos(TipoCuenta  tipoCuenta, LocalDateTime desde, LocalDateTime hasta) {
+    public List<ViajesUsuarioDTO> getUsuariosMasActivos(TipoCuenta  tipoCuenta, Instant desde, Instant hasta) {
         List<Integer> listaUsuarios = this.getUsuariosByTipoCuenta(tipoCuenta);
         return this.viajeRepository.getUsuariosMasActivos(listaUsuarios, desde, hasta);
     }
@@ -80,12 +84,14 @@ public class ViajeService {
         Viaje v = this.getById(id);
 
         v.setActivo(false);
-        v.setFechaFin(LocalDateTime.now());
+        v.setFechaFin(Instant.now());
 
         this.viajeRepository.save(v);
+
+        this.monopatinFeignClient.setEstadoCancelado(v.getIdMonopatin());
     }
 
-    public int getCantidadViajesUsuario(int idUsuario, LocalDateTime desde, LocalDateTime hasta) {
+    public int getCantidadViajesUsuario(int idUsuario, Instant desde, Instant hasta) {
         return this.viajeRepository.getCantidadViajesUsuario(idUsuario, desde, hasta);
     }
 }
