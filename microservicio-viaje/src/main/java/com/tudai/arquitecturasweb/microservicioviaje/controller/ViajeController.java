@@ -12,7 +12,7 @@ import java.time.Instant;
 import java.util.List;
 
 @RestController
-@RequestMapping("/viajes")
+@RequestMapping("/api/viajes")
 public class ViajeController {
 
     @Autowired
