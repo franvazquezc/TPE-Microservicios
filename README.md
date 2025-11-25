@@ -5,4 +5,4 @@
 - Francisco Vazquez (frvazquez@alumnos.exa.unicen.edu.ar)
 
 ## Diagrama de subdominios:
-![Diagrama del sistema](./recursos/Diagrama-Subdominios.png)
+![Image alt](./recursos/Diagrama-Subdominios.png)
