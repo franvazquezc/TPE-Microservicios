@@ -3,3 +3,6 @@
 ## Integrantes:
 - Javier Ignacio Agüera Martin (nacho.aguera.martin@hotmail.com).
 - Francisco Vazquez (frvazquez@alumnos.exa.unicen.edu.ar)
+
+## Diagrama de subdominios:
+![Diagrama del sistema](./recursos/Diagrama-Subdominios.png)
