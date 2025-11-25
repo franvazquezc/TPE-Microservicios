@@ -1,0 +1,876 @@
+{
+	"info": {
+		"_postman_id": "016af279-2588-4d3b-8edd-1a41261b26b6",
+		"name": "TPE - Microservicios",
+		"description": "Lista de endpoints para cargar datos de prueba en las bases del TPE de Microservicios.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30916362"
+	},
+	"item": [
+		{
+			"name": "save-monopatin-1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"activo\": true,\r\n    \"estado\": \"ESTACIONADO\",\r\n    \"minutosDeUso\": 120,\r\n    \"kmRecorridos\": 15.5,\r\n    \"latitud\": -37.321,\r\n    \"longitud\": -59.133,\r\n    \"idViajeActual\": null,\r\n    \"idParadaActual\": 1\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8001/monopatines",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"monopatines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save-monopatin-2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 2,\r\n    \"activo\": true,\r\n    \"estado\": \"MANTENIMIENTO\",\r\n    \"minutosDeUso\": 300,\r\n    \"kmRecorridos\": 42.7,\r\n    \"latitud\": -37.325,\r\n    \"longitud\": -59.140,\r\n    \"idViajeActual\": null,\r\n    \"idParadaActual\": null\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8001/monopatines",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"monopatines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save-monopatin-3",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 3,\r\n    \"activo\": true,\r\n    \"estado\": \"ESTACIONADO\",\r\n    \"minutosDeUso\": 45,\r\n    \"kmRecorridos\": 6.2,\r\n    \"latitud\": -37.330,\r\n    \"longitud\": -59.150,\r\n    \"idViajeActual\": null,\r\n    \"idParadaActual\": 2\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8001/monopatines",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"monopatines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save-usuario-1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dni\": 40123123,\r\n    \"alias\": \"fran_01\",\r\n    \"nombre\": \"Francisco\",\r\n    \"apellido\": \"Gomez\",\r\n    \"email\": \"fran.gomez@mail.com\",\r\n    \"celular\": 1122334455,\r\n    \"idCuentas\": [1]\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8004/usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8004",
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save-usuario-2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\r\n    \"dni\": 38999111,\r\n    \"alias\": \"maria_p\",\r\n    \"nombre\": \"Maria\",\r\n    \"apellido\": \"Perez\",\r\n    \"email\": \"maria.perez@mail.com\",\r\n    \"celular\": 1199887766,\r\n    \"idCuentas\": [2]\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8004/usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8004",
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save-cuenta-1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"tipo\": \"BASICA\",\r\n    \"fechaAlta\": \"2024-01-15\",\r\n    \"saldo\": 2500.0,\r\n    \"kmMensualesDisponibles\": null,\r\n    \"idUsuarios\": [40123123]\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8002/cuentas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"cuentas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save-cuenta-2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 2,\r\n    \"tipo\": \"PREMIUM\",\r\n    \"fechaAlta\": \"2024-03-10\",\r\n    \"saldo\": 5000.0,\r\n    \"kmMensualesDisponibles\": 100.0,\r\n    \"idUsuarios\": [38999111]\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8002/cuentas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"cuentas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add-parada-1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"direccion\": \"Av. Santamarina 500\",\r\n    \"latitud\": -37.321,\r\n    \"longitud\": -59.133\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8003/paradas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8003",
+					"path": [
+						"paradas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save-parada-2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 2,\r\n    \"direccion\": \"Belgrano y Pinto\",\r\n    \"latitud\": -37.330,\r\n    \"longitud\": -59.150\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8003/paradas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8003",
+					"path": [
+						"paradas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save-viaje-1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"fechaInicio\": \"2024-11-01T10:00:00-03:00\",\r\n    \"fechaFin\": \"2024-11-01T10:45:00-03:00\",\r\n    \"minutosPausas\": [5],\r\n    \"kmRecorridos\": 6.2,\r\n    \"activo\": false,\r\n    \"idUsuario\": 40123123,\r\n    \"idCuenta\": 1,\r\n    \"idMonopatin\": 3,\r\n    \"idParadaInicial\": 1,\r\n    \"idParadaFinal\": 2\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8005/viajes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8005",
+					"path": [
+						"viajes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save-viaje-2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 2,\r\n    \"fechaInicio\": \"2024-11-05T14:30:00-03:00\",\r\n    \"fechaFin\": \"2024-11-05T15:10:00-03:00\",\r\n    \"minutosPausas\": [],\r\n    \"kmRecorridos\": 4.8,\r\n    \"activo\": false,\r\n    \"idUsuario\": 38999111,\r\n    \"idCuenta\": 2,\r\n    \"idMonopatin\": 1,\r\n    \"idParadaInicial\": 2,\r\n    \"idParadaFinal\": 1\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8005/viajes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8005",
+					"path": [
+						"viajes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save-pago-1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n    \"idViaje\": 1,\r\n    \"idCuenta\": 1,\r\n    \"fecha\": \"2024-11-01T10:50:00-03:00\",\r\n    \"montoFacturado\": 620.0,\r\n    \"kmFacturados\": 6.2\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8002/pagos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"pagos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save-pago-2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idViaje\": 2,\r\n    \"idCuenta\": 2,\r\n    \"fecha\": \"2024-11-05T15:15:00-03:00\",\r\n    \"montoFacturado\": 480.0,\r\n    \"kmFacturados\": 4.8\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8002/pagos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"pagos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save-tarifa-1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n    \"id\": 1,\r\n    \"desde\": \"2024-01-01\",\r\n    \"hasta\": \"2027-12-31\",\r\n    \"tarifaXMinPlana\": 10.0,\r\n    \"tarifaXMinExtra\": 15.0,\r\n    \"tarifaXMinPremium\": 8.0,\r\n    \"tarifaXMesPremium\": 1200.0\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8002/tarifas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"tarifas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test-servicio-4a",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8001/monopatines/reporte-km",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"monopatines",
+						"reporte-km"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test-servicio-4b",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n    \"id\": 1,\r\n    \"desde\": \"2024-01-01\",\r\n    \"hasta\": \"2027-12-31\",\r\n    \"tarifaXMinPlana\": 10.0,\r\n    \"tarifaXMinExtra\": 15.0,\r\n    \"tarifaXMinPremium\": 8.0,\r\n    \"tarifaXMesPremium\": 1200.0\r\n  }"
+				},
+				"url": {
+					"raw": "http://localhost:8002/cuentas/2/suspender",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"cuentas",
+						"2",
+						"suspender"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test-servicio-4c",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8005/viajes/reportes/monopatines-mas-viajes?cantidadMinima=0&anio=2024",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8005",
+					"path": [
+						"viajes",
+						"reportes",
+						"monopatines-mas-viajes"
+					],
+					"query": [
+						{
+							"key": "cantidadMinima",
+							"value": "0"
+						},
+						{
+							"key": "anio",
+							"value": "2024"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test-servicio-4d",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8002/pagos/reporte-facturacion?anio=2024&desdeMes=6&hastaMes=12",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"pagos",
+						"reporte-facturacion"
+					],
+					"query": [
+						{
+							"key": "anio",
+							"value": "2024"
+						},
+						{
+							"key": "desdeMes",
+							"value": "6"
+						},
+						{
+							"key": "hastaMes",
+							"value": "12"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test-servicio-4e",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8005/viajes/reportes/viajes-de-usuarios?tipoCuenta=BASICA&desde=2024-11-01T09:59:00-03:00&hasta=2024-11-01T10:01:00-03:00",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8005",
+					"path": [
+						"viajes",
+						"reportes",
+						"viajes-de-usuarios"
+					],
+					"query": [
+						{
+							"key": "tipoCuenta",
+							"value": "BASICA"
+						},
+						{
+							"key": "desde",
+							"value": "2024-11-01T09:59:00-03:00"
+						},
+						{
+							"key": "hasta",
+							"value": "2024-11-01T10:01:00-03:00"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test-servicio-4f",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n    \"id\": 2,\r\n    \"desde\": \"2027-01-02\",\r\n    \"hasta\": \"2028-12-31\",\r\n    \"tarifaXMinPlana\": 15.0,\r\n    \"tarifaXMinExtra\": 20.0,\r\n    \"tarifaXMinPremium\": 9.0,\r\n    \"tarifaXMesPremium\": 1600.0\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8002/tarifas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"tarifas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test-servicio-4g",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8001/monopatines/cercanos?latitud=-37.323&longitud=-59.133&radio=0.4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"monopatines",
+						"cercanos"
+					],
+					"query": [
+						{
+							"key": "latitud",
+							"value": "-37.323"
+						},
+						{
+							"key": "longitud",
+							"value": "-59.133"
+						},
+						{
+							"key": "radio",
+							"value": "0.4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test-servicio-4h1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8004/usuarios/40123123/viajes?desde=2024-11-01T09:00:00-03:00&hasta=2024-11-01T11:00:00-03:00",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8004",
+					"path": [
+						"usuarios",
+						"40123123",
+						"viajes"
+					],
+					"query": [
+						{
+							"key": "desde",
+							"value": "2024-11-01T09:00:00-03:00"
+						},
+						{
+							"key": "hasta",
+							"value": "2024-11-01T11:00:00-03:00"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test-servicio-4h2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8004/usuarios/cuenta/2/viajes?desde=2024-11-01T09:00:00-03:00&hasta=2024-11-01T11:00:00-03:00",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8004",
+					"path": [
+						"usuarios",
+						"cuenta",
+						"2",
+						"viajes"
+					],
+					"query": [
+						{
+							"key": "desde",
+							"value": "2024-11-01T09:00:00-03:00"
+						},
+						{
+							"key": "hasta",
+							"value": "2024-11-01T11:00:00-03:00"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test-servicio-pago-con_viajes_activos-1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 4,\r\n    \"activo\": true,\r\n    \"estado\": \"EN_USO\",\r\n    \"minutosDeUso\": 50,\r\n    \"kmRecorridos\": 10,\r\n    \"latitud\": -37.323,\r\n    \"longitud\": -59.133,\r\n    \"idViajeActual\": 3\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8001/monopatines",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"monopatines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test-servicio-pago-con_viajes_activos-2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dni\": 41000111,\r\n    \"alias\": \"manuelf\",\r\n    \"nombre\": \"Manuel\",\r\n    \"apellido\": \"Fernandez\",\r\n    \"email\": \"manuelf@mail.com\",\r\n    \"celular\": 1122334456,\r\n    \"idCuentas\": [3]\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8004/usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8004",
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test-servicio-pago-con_viajes_activos-3",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 3,\r\n    \"tipo\": \"BASICA\",\r\n    \"fechaAlta\": \"2024-01-15\",\r\n    \"saldo\": 50.0,\r\n    \"kmMensualesDisponibles\": null,\r\n    \"idUsuarios\": [41000111]\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8002/cuentas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"cuentas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test-servicio-pago-con_viajes_activos-4",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 3,\r\n    \"fechaInicio\": \"2025-11-22T13:00:00\",\r\n    \"minutosPausas\": [],\r\n    \"kmRecorridos\": 8,\r\n    \"activo\": true,\r\n    \"idUsuario\": 41000111,\r\n    \"idCuenta\": 3,\r\n    \"idMonopatin\": 4,\r\n    \"idParadaInicial\": 1\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8005/viajes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8005",
+					"path": [
+						"viajes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test-servicio-credenciales",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dni\": 1199887766,\r\n    \"password\": \"hola\",\r\n    \"authorities\": [\"ADMIN\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/credenciales",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"credenciales"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test-servicio-auth",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dni\": 1199887766,\r\n    \"password\": \"hola\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test-seguridad",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/viajes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"viajes"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
