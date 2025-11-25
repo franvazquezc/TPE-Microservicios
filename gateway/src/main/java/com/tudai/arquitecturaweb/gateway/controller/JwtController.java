@@ -9,9 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.authentication.ott.OneTimeTokenAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/authenticate")
+@RequestMapping("/api/auth")
 @RequiredArgsConstructor
 public class JwtController {
 
@@ -32,7 +30,7 @@ public class JwtController {
     public ResponseEntity<JWTToken> authorize(@Valid @RequestBody LoginDTO request ) {
 
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-                request.getUsername(),
+                request.getDni().toString(),
                 request.getPassword()
         );
 
@@ -54,7 +52,7 @@ public class JwtController {
 
         @JsonProperty("id_token")
         String getIdToken() {
-            return idToken;
+            return this.idToken;
         }
 
         void setIdToken(String idToken) {

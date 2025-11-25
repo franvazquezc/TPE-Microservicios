@@ -1,7 +1,7 @@
 package com.tudai.arquitecturaweb.gateway.controller;
 
-import com.tudai.arquitecturaweb.gateway.dto.UserDTO;
-import com.tudai.arquitecturaweb.gateway.service.UserService;
+import com.tudai.arquitecturaweb.gateway.dto.CredencialDTO;
+import com.tudai.arquitecturaweb.gateway.service.CredencialService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -12,17 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/usuarios")
+@RequestMapping("/api/credenciales")
 @RequiredArgsConstructor
-public class UserController {
+public class CredencialController {
 
-
-    private final UserService userService;
-
+    private final CredencialService credencialService;
 
     @PostMapping
-    public ResponseEntity<?> saveUser(@RequestBody @Valid UserDTO userDTO) {
-        final var id = userService.saveUser( userDTO );
+    public ResponseEntity<?> saveCredencial(@RequestBody @Valid CredencialDTO credencialDTO) {
+        final var id = credencialService.saveCredencial( credencialDTO );
         return new ResponseEntity<>( id, HttpStatus.CREATED );
     }
 

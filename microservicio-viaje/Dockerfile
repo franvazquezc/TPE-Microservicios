@@ -1,12 +1,12 @@
-# Etapa 1: build con Maven y JDK 21
-FROM maven:3.9.6-eclipse-temurin-21 AS build
+# Etapa de build con Maven y JDK 21
+FROM maven:3.9.9-eclipse-temurin-21 AS build
 WORKDIR /app
-COPY .. .
-RUN mvn -pl microservicio-viaje -am clean package -DskipTests
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Etapa 2: imagen final con OpenJDK 21
-FROM eclipse-temurin:21-jdk
+# Imagen final con solo JRE
+FROM eclipse-temurin:21-jre
 WORKDIR /app
-COPY --from=build /app/microservicio-viaje/target/*.jar app.jar
+COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8005
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java","-jar","app.jar"]

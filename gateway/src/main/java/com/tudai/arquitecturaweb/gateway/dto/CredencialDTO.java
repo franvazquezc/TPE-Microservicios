@@ -6,10 +6,9 @@ import jakarta.validation.constraints.NotEmpty;
 import java.util.Set;
 
 @Data
-public class UserDTO {
-    @NotNull(message = "El usuario es un campo requerido.")
-    @NotEmpty(message = "El usuario es un campo requerido.")
-    private String username;
+public class CredencialDTO {
+    @NotNull(message = "El dni es un campo requerido.")
+    private Integer dni;
 
     @NotNull(message = "La contraseña es un campo requerido.")
     @NotEmpty(message = "La contraseña es un campo requerido.")

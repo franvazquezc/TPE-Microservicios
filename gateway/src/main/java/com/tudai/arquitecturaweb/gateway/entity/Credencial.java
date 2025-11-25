@@ -17,14 +17,10 @@ import java.util.Set;
 @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class Credencial {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @Column(nullable = false)
-    private String username;
+    private Integer dni;
 
     @Column(nullable = false)
     private String password;
@@ -33,12 +29,14 @@ public class User {
     @ManyToMany( fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "user_authority",
-            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id") },
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "dni") },
             inverseJoinColumns = { @JoinColumn(name = "authority_name", referencedColumnName = "name")}
     )
     private Set<Authority> authorities = new HashSet<>();
 
-    public User (final String username){ this.username = username.toLowerCase();}
+    public Credencial(Integer dni) {
+        this.dni = dni;
+    }
 
     public void setAuthorities(final Collection<Authority> authorities) {
         this.authorities = new HashSet<>(authorities);

@@ -1,0 +1,79 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: gateway
+  # Base de datos para credenciales
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://mysql:3306/Servicio_Credencial?createDatabaseIfNotExist=true&serverTimezone=UTC}
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    password: ${SPRING_DATASOURCE_PASSWORD:root}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+
+  # Configuración del Gateway MVC
+  cloud:
+    gateway:
+      mvc:
+        routes:
+#          # Rutas de autenticación - manejadas INTERNAMENTE
+#          - id: auth-routes
+#            uri: http://localhost:8000
+#            predicates:
+#              - Path=/api/auth/**, /api/credenciales/**
+#            # Sin StripPrefix - se manejan internamente
+
+          # Microservicio Monopatín
+          - id: microservicio-monopatin
+            uri: http://microservicio-monopatin:8001
+            predicates:
+              - Path=/api/monopatines/**
+            filters:
+              - StripPrefix=1
+
+          # Microservicio Pago
+          - id: microservicio-pago
+            uri: http://microservicio-pago:8002
+            predicates:
+              - Path=/api/pagos/**
+            filters:
+              - StripPrefix=1
+
+          # Microservicio Parada
+          - id: microservicio-parada
+            uri: http://microservicio-parada:8003
+            predicates:
+              - Path=/api/paradas/**
+            filters:
+              - StripPrefix=1
+
+          # Microservicio Usuario
+          - id: microservicio-usuario
+            uri: http://microservicio-usuario:8004
+            predicates:
+              - Path=/api/usuarios/**
+            filters:
+              - StripPrefix=1
+
+          # Microservicio Viaje
+          - id: microservicio-viaje
+            uri: http://microservicio-viaje:8005
+            predicates:
+              - Path=/api/viajes/**
+            filters:
+              - StripPrefix=1
+
+# Configuración de logging
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.security: DEBUG
+    com.tudai.arquitecturaweb.gateway: DEBUG

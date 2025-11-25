@@ -1,4 +1,7 @@
-version: '3.8'
+networks:
+
+  microservicios-network:
+    driver: bridge
 
 services:
 
@@ -12,17 +15,35 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
     healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$$MYSQL_ROOT_PASSWORD" ]
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot" ]
       timeout: 20s
       retries: 10
       start_period: 40s
       interval: 10s
+    networks:
+      - microservicios-network
+
+  gateway:
+    build:
+      context: ./gateway
+      dockerfile: Dockerfile
+    container_name: gateway
+    ports:
+      - "8000:8000"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/Servicio_Credencial?createDatabaseIfNotExist=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - microservicios-network
 
   microservicio-monopatin:
     build:
-      context: .
-      dockerfile: microservicio-monopatin/Dockerfile
-
+      context: ./microservicio-monopatin
+      dockerfile: Dockerfile
     container_name: microservicio-monopatin
     ports:
       - "8001:8001"
@@ -33,12 +54,13 @@ services:
     depends_on:
       mysql:
           condition: service_healthy
+    networks:
+      - microservicios-network
 
   microservicio-pago:
     build:
-      context: .
-      dockerfile: microservicio-pago/Dockerfile
-
+      context: ./microservicio-pago
+      dockerfile: Dockerfile
     container_name: microservicio-pago
     ports:
       - "8002:8002"
@@ -49,11 +71,13 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
+    networks:
+      - microservicios-network
 
   microservicio-parada:
     build:
-      context: .
-      dockerfile: microservicio-parada/Dockerfile
+      context: ./microservicio-parada
+      dockerfile: Dockerfile
     container_name: microservicio-parada
     ports:
       - "8003:8003"
@@ -64,11 +88,13 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
+    networks:
+      - microservicios-network
 
   microservicio-usuario:
     build:
-      context: .
-      dockerfile: microservicio-usuario/Dockerfile
+      context: ./microservicio-usuario
+      dockerfile: Dockerfile
     container_name: microservicio-usuario
     ports:
       - "8004:8004"
@@ -79,11 +105,13 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
+    networks:
+      - microservicios-network
 
   microservicio-viaje:
     build:
-      context: .
-      dockerfile: microservicio-viaje/Dockerfile
+      context: ./microservicio-viaje
+      dockerfile: Dockerfile
     container_name: microservicio-viaje
     ports:
       - "8005:8005"
@@ -94,6 +122,8 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
+    networks:
+      - microservicios-network
 
 volumes:
   mysql_data:

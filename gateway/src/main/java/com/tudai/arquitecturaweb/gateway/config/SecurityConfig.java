@@ -42,13 +42,24 @@ public class SecurityConfig {
         http
                 .securityMatcher("/api/**")
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers(HttpMethod.POST, "/api/authenticate").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/usuarios").permitAll()
-                        .requestMatchers("/api/monopatines/reporte-km/**").hasAuthority(AuthotityConstant._ADMIN)
-                        .requestMatchers("/api/cuentas/{id}/suspender/**").hasAuthority(AuthotityConstant._ADMIN)
-                        .requestMatchers("/api/viajes/reportes/monopatines-mas-viajes/**").hasAuthority(AuthotityConstant._ADMIN)
-                        .requestMatchers("/api/pagos/reporte-facturacion/**").hasAuthority(AuthotityConstant._ADMIN)
-                        .requestMatchers("/api/viajes/reportes/viajes-de-usuarios/**").hasAuthority(AuthotityConstant._ADMIN)
+                        .requestMatchers(HttpMethod.POST, "/api/auth/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/credenciales/**").permitAll()
+
+                        .requestMatchers("/api/monopatines/cercanos").hasAuthority(AuthotityConstant._USUARIO)
+                        //.requestMatchers("/api//usuarios/40123123/viajes").hasAuthority(AuthotityConstant._USUARIO)
+                        //.requestMatchers("/api/usuarios/cuenta/2/viajes/**").hasAuthority(AuthotityConstant._USUARIO)
+
+                        .requestMatchers("/api/monopatines/**").hasAuthority(AuthotityConstant._ADMIN)
+                        .requestMatchers("/api/pagos/**").hasAuthority(AuthotityConstant._ADMIN)
+                        .requestMatchers("/api/paradas/**").hasAuthority(AuthotityConstant._ADMIN)
+                        .requestMatchers("/api/usuarios/**").hasAuthority(AuthotityConstant._ADMIN)
+                        .requestMatchers("/api/viajes/**").hasAuthority(AuthotityConstant._ADMIN)
+
+                        //.requestMatchers("/api/monopatines/reporte-km/**").hasAuthority(AuthotityConstant._ADMIN)
+                        //.requestMatchers("/api/cuentas/{id}/suspender/**").hasAuthority(AuthotityConstant._ADMIN)
+                        //.requestMatchers("/api/viajes/reportes/monopatines-mas-viajes/**").hasAuthority(AuthotityConstant._ADMIN)
+                        //.requestMatchers("/api/pagos/reporte-facturacion/**").hasAuthority(AuthotityConstant._ADMIN)
+                        //.requestMatchers("/api/viajes/reportes/viajes-de-usuarios/**").hasAuthority(AuthotityConstant._ADMIN)
                         //Falta el actualizarPrecio (4f)
                         .anyRequest().authenticated()
                 )

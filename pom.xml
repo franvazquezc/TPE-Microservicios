@@ -17,7 +17,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>microservicio-administracion</module>
+        <module>gateway</module>
         <module>microservicio-monopatin</module>
         <module>microservicio-pago</module>
         <module>microservicio-parada</module>
@@ -30,17 +30,4 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>2023.0.3</version> <!-- versión estable compatible con Spring Boot 3.3.x -->
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
 </project>

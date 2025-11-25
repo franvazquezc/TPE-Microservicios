@@ -32,7 +32,7 @@ public class JwtFilter extends OncePerRequestFilter {
     }
 
     @Override
-    public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException, IOException {
+    public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String jwt = resolveToken( request );
         try {
             if ( StringUtils.hasText(jwt) && this.tokenProvider.validateToken( jwt ) ) {

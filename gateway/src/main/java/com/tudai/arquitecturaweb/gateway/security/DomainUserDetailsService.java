@@ -1,8 +1,8 @@
 package com.tudai.arquitecturaweb.gateway.security;
 
 import com.tudai.arquitecturaweb.gateway.entity.Authority;
-import com.tudai.arquitecturaweb.gateway.entity.User;
-import com.tudai.arquitecturaweb.gateway.repository.UserRepository;
+import com.tudai.arquitecturaweb.gateway.entity.Credencial;
+import com.tudai.arquitecturaweb.gateway.repository.CredencialRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
@@ -21,34 +21,40 @@ public class DomainUserDetailsService  implements UserDetailsService {
 
     private final Logger log = LoggerFactory.getLogger(DomainUserDetailsService.class);
 
-    private final UserRepository userRepository;
+    private final CredencialRepository credencialRepository;
 
-    public DomainUserDetailsService( UserRepository userRepository ) {
-        this.userRepository = userRepository;
+    public DomainUserDetailsService(CredencialRepository credencialRepository) {
+        this.credencialRepository = credencialRepository;
     }
 
+    // Spring Security llama este metodo cada vez que necesita autenticar un usuario.
     @Override
     @Transactional(readOnly = true)
-    public UserDetails loadUserByUsername(final String username ) {
+    public UserDetails loadUserByUsername(final String username) {
         log.debug("Authenticating {}", username);
+        // Convertir el username (String) del metodo de la interfaz a Integer (dni) del modelo.
+        Integer dni;
+        try {
+            dni = Integer.parseInt(username);
+        } catch (NumberFormatException e) {
+            throw new UsernameNotFoundException("El usuario " + username + " no es un DNI válido");
+        }
 
-        //final var user = this.userRepository.findOneWithAuthoritiesByUsernameIgnoreCase( username ).orElseThrow();
-        //return this.createSpringSecurityUser( user );
-
-        return userRepository
-                .findOneWithAuthoritiesByUsernameIgnoreCase( username.toLowerCase() )
-                .map( this::createSpringSecurityUser )
-                .orElseThrow( () -> new UsernameNotFoundException( "El usuario " + username + " no existe" ) );
+        return credencialRepository
+                .findOneWithAuthoritiesByDni(dni)
+                .map(this::createSpringSecurityUser)
+                .orElseThrow(() -> new UsernameNotFoundException("El usuario " + username + " no existe"));
     }
 
-    private UserDetails createSpringSecurityUser( User user ) {
-        List<GrantedAuthority> grantedAuthorities = user
+    // Adaptar el modelo de datos al modelo de seguridad de Spring.
+    private UserDetails createSpringSecurityUser(Credencial credencial) {
+        List<GrantedAuthority> grantedAuthorities = credencial
                 .getAuthorities()
                 .stream()
-                .map( Authority::getName )
-                .map( SimpleGrantedAuthority::new )
-                .collect( Collectors.toList() );
+                .map(Authority::getName)
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toList());
 
-        return new org.springframework.security.core.userdetails.User( user.getUsername(), user.getPassword(), grantedAuthorities );
+        return new org.springframework.security.core.userdetails.User(credencial.getDni().toString(), credencial.getPassword(), grantedAuthorities);
     }
 }
